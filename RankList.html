@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albanian Brawl Stars RankList</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #2c7a7b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #fbd38d;
+        }
+
+        .btn-tournament-history {
+            background-color: #fbd38d;
+            color: #1f2937;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-tournament-history:hover {
+            background-color: #e6a910;
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .main-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Player Details Card */
+        .player-details-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            display: none;
+            transform: translateY(-10px);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .player-details-card.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .player-details-card h2 {
+            color: #fbd38d;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        .player-details-card p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Profile Image */
+        .player-details-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #fbd38d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        /* Rank List */
+        .rank-list-container {
+            width: 100%;
+        }
+
+        .rank-list-container h2 {
+            font-size: 1.3rem;
+            text-align: center;
+            background: #2c7a7b;
+            color: #fbd38d;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-list-container h2:hover {
+            background-color: #2a6f6d;
+            transform: scale(1.05);
+        }
+
+        .rank-list {
+            display: none;
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-list th, .rank-list td {
+            padding: 12px 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .rank-list th {
+            background: #2c7a7b;
+            color: #fbd38d;
+        }
+
+        .rank-list tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .rank-list tr:hover {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        /* Modal/Popup for Image */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .btn-tournament-history {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .main-container {
+                gap: 15px;
+            }
+
+            .player-details-card {
+                padding: 15px;
+            }
+
+            .rank-list th, .rank-list td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Brawl Stars RankList</h1>
+        <button class="btn-tournament-history" onclick="window.location.href='tournament_history.html'">
+            Tournament History
+        </button>
+    </header>
+
+    <div class="main-container">
+        <!-- Player Details -->
+        <div class="player-details-card" id="playerDetailsCard">
+            <img id="playerImage" src="" alt="Player Profile Image" onclick="showModal()">
+            <h2>Player Details</h2>
+            <p id="playerName">Name: N/A</p>
+            <p id="playerTime">Drafting: N/A</p>
+            <p id="playerScore">Skills: N/A</p>
+            <p id="playerAccuracy">Scrims WR: N/A</p>
+            <p id="playerAchievements">Best Achievement: N/A</p>
+       
+        </div>
+
+        <!-- Rank List -->
+        <div class="rank-list-container">
+            <h2 onclick="toggleRankList()">November Rank List</h2>
+            <table class="rank-list" id="rankList">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>PL Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="showPlayerDetails('Gezim', '80%', '95%', 'N/A', 'Tier C,Masters' ,'https://via.placeholder.com/100')">
+                        <td>1</td>
+                        <td>Gezim</td>
+                        <td>Masters x2</td>
+                    </tr>
+                    <tr onclick="showPlayerDetails('Domii', '75%', '85%', 'N/A', 'Matcherino QF','https://via.placeholder.com/100')">
+                        <td>2</td>
+                        <td>Domii</td>
+                        <td>Legendary 3</td>
+                    </tr>
+                    <tr onclick="showPlayerDetails('Dave', '50%', '75%', 'N/A','N/A', 'https://via.placeholder.com/100')">
+                        <td>3</td>
+                        <td>Dave</td>
+                        <td>Mythic 1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 AlbCommunity | All Rights Reserved
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <img id="modalImage" src="" alt="Larger Image">
+    </div>
+
+    <script>
+        function toggleRankList() {
+            const table = document.getElementById('rankList');
+            const detailsCard = document.getElementById('playerDetailsCard');
+
+            table.style.display = table.style.display === 'none' ? 'table' : 'none';
+
+            if (table.style.display === 'none') {
+                detailsCard.style.transform = 'translateY(-10px)';
+                detailsCard.style.opacity = '0';
+                setTimeout(() => {
+                    detailsCard.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function showPlayerDetails(name, time, score, accuracy, achievements, imageUrl) {
+            const detailsCard = document.getElementById('playerDetailsCard');
+            detailsCard.style.display = 'block';
+            detailsCard.style.transform = 'translateY(0)';
+            detailsCard.style.opacity = '1';
+
+            document.getElementById('playerName').textContent = `Name: ${name}`;
+            document.getElementById('playerTime').textContent = `Drafting: ${time}`;
+            document.getElementById('playerScore').textContent = `Skills: ${score}`;
+            document.getElementById('playerAccuracy').textContent = `Scrims WinRate: ${accuracy}`;
+            document.getElementById('playerAchievements').textContent = `Best Achievements: ${achievements}`;
+
+            const playerImage = document.getElementById('playerImage');
+            playerImage.src = imageUrl;
+        }
+
+        function showModal() {
+            const modal = document.getElementById('imageModal');
+            const playerImage = document.getElementById('playerImage');
+            const modalImage = document.getElementById('modalImage');
+
+            modalImage.src = playerImage.src;
+            modal.classList.add('active');
+        }
+
+        // Close the modal when clicked outside of the image
+        document.getElementById('imageModal').addEventListener('click', function() {
+            this.classList.remove('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament History</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #2c7a7b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: #fbd38d;
+        }
+
+        .btn-back-home {
+            background-color: #fbd38d;
+            color: #1f2937;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-back-home:hover {
+            background-color: #e6a910;
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .main-container {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Tournament List */
+        .tournament-list h2 {
+            font-size: 1.3rem;
+            text-align: center;
+            background: #2c7a7b;
+            color: #fbd38d;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .tournament-list h2:hover {
+            background-color: #2a6f6d;
+            transform: scale(1.05);
+        }
+
+        /* Tournament Details */
+        .tournament-details {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .tournament-details.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .tournament-details h3 {
+            margin: 0 0 10px 0;
+            color: #fbd38d;
+        }
+
+        .tournament-details p {
+            margin: 8px 0;
+        }
+
+        /* Bracket Image */
+        .bracket-img-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .bracket-img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.2rem;
+            }
+
+            .btn-back-home {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .main-container {
+                gap: 15px;
+            }
+
+            .tournament-details {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tournament History</h1>
+        <button class="btn-back-home" onclick="window.location.href='index.html'">
+            Back to Home
+        </button>
+    </header>
+
+    <div class="main-container">
+        <!-- Tournament List -->
+        <div class="tournament-list">
+            <h2 onclick="toggleTournamentDetails('tournament1')">November Tournament</h2>
+            <div class="tournament-details" id="tournament1">
+                <h3>November Tournament</h3>
+                <p><strong>Winner:</strong> (Team Motra Domit)</p>
+                Roster:<br>
+                -Gezim
+                -Della
+                -Leon
+                <p><strong>Runner-Up:</strong> OwnAlbania</p>
+                <p><strong>MVP:</strong> Gezim</p>
+                <p><strong>Prize Pool:</strong>60$</p>
+                <p><strong>Organized By:</strong> Gezim</p>
+                
+                <!-- Bracket Image Section -->
+                <div class="bracket-img-container">
+                    <img src="https://media.discordapp.net/attachments/1297339004164898836/1309957234578423859/IMG_0237.png?ex=6744c9be&is=6743783e&hm=16668c0da815c23661cbb367a496fb76ed310d9841a47a927904a49ce6458961&=&format=webp&quality=lossless" alt="Tournament Bracket">
+                </div>
+            </div>
+        </div>
+
+      
+    <footer>
+        © 2024 AlbCommunity | All Rights Reserved
+    </footer>
+
+    <script>
+        function toggleTournamentDetails(id) {
+            const details = document.getElementById(id);
+
+            // Close all other open details
+            document.querySelectorAll('.tournament-details').forEach(detail => {
+                if (detail !== details) {
+                    detail.classList.remove('active');
+                    detail.style.transform = 'translateY(-10px)';
+                    detail.style.opacity = '0';
+                    setTimeout(() => {
+                        detail.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            // Toggle the selected details
+            if (details.classList.contains('active')) {
+                details.classList.remove('active');
+                details.style.transform = 'translateY(-10px)';
+                details.style.opacity = '0';
+                setTimeout(() => {
+                    details.style.display = 'none';
+                }, 300);
+            } else {
+                details.style.display = 'block';
+                setTimeout(() => {
+                    details.classList.add('active');
+                    details.style.transform = 'translateY(0)';
+                    details.style.opacity = '1';
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>
