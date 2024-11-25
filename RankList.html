@@ -10,7 +10,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1f2937, #374151);
+            background: linear-gradient(to right, #1f2937, #2c3e50);
             color: white;
         }
 
@@ -19,7 +19,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: #2c7a7b;
+            background: #374151;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
@@ -27,13 +27,13 @@
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0;
-            color: #fbd38d;
+            color: #f9a825;
         }
 
         .btn-tournament-history {
-            background-color: #fbd38d;
+            background-color: #f9a825;
             color: #1f2937;
             padding: 10px 15px;
             font-size: 1rem;
@@ -44,103 +44,52 @@
         }
 
         .btn-tournament-history:hover {
-            background-color: #e6a910;
+            background-color: #c77800;
             transform: scale(1.1);
         }
 
         /* Main Container */
         .main-container {
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Player Details Card */
-        .player-details-card {
-            width: 100%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            display: none;
-            transform: translateY(-10px);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-
-        .player-details-card.active {
-            display: block;
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .player-details-card h2 {
-            color: #fbd38d;
-            margin: 0;
-            margin-bottom: 15px;
-        }
-
-        .player-details-card p {
-            margin: 8px 0;
-            font-size: 0.9rem;
-        }
-
-        /* Profile Image */
-        .player-details-card img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid #fbd38d;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-        }
-
         /* Rank List */
         .rank-list-container {
-            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .rank-list-container h2 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             text-align: center;
-            background: #2c7a7b;
-            color: #fbd38d;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .rank-list-container h2:hover {
-            background-color: #2a6f6d;
-            transform: scale(1.05);
+            color: #f9a825;
+            margin-bottom: 20px;
         }
 
         .rank-list {
-            display: none;
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .rank-list th, .rank-list td {
-            padding: 12px 10px;
+            padding: 12px 15px;
             text-align: center;
             font-size: 0.9rem;
         }
 
         .rank-list th {
-            background: #2c7a7b;
-            color: #fbd38d;
+            background: #374151;
+            color: #f9a825;
         }
 
         .rank-list tr:nth-child(even) {
@@ -148,11 +97,44 @@
         }
 
         .rank-list tr:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             cursor: pointer;
         }
 
-        /* Modal/Popup for Image */
+        /* Player Details */
+        .player-details-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .player-details-card.active {
+            display: block;
+        }
+
+        .player-details-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #f9a825;
+            margin-bottom: 15px;
+        }
+
+        .player-details-card h2 {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            color: #f9a825;
+        }
+
+        .player-details-card p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -161,7 +143,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
         }
@@ -169,7 +151,8 @@
         .modal img {
             max-width: 90%;
             max-height: 80%;
-            object-fit: contain;
+            border: 3px solid #f9a825;
+            border-radius: 10px;
         }
 
         .modal.active {
@@ -179,7 +162,7 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
             .btn-tournament-history {
@@ -187,16 +170,14 @@
                 padding: 8px 12px;
             }
 
-            .main-container {
-                gap: 15px;
-            }
-
-            .player-details-card {
-                padding: 15px;
-            }
-
             .rank-list th, .rank-list td {
-                padding: 10px;
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+
+            .player-details-card img {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -288,7 +269,7 @@
                     <tr onclick="showPlayerDetails('Leon', '50%', '68%%', 'N/A','Tournament Winner', 'https://media.discordapp.net/attachments/1289356990698749952/1310361848540954725/IMG_6571.png?ex=6744f112&is=67439f92&hm=9c9fa602bcb49949b0dd78ec2b8fe0e256af701d2af60161ab0a833cf81f71e8&=&format=webp&quality=lossless&width=1200&height=555')">
                         <td>11</td>
                         <td>Leon</td>
-                        <td>Mythic 1</td>
+                        <td>Mythic 2</td>
                     </tr>
                     <tr onclick="showPlayerDetails('Masakra', '50%', '72%', 'N/A','N/A', 'https://via.placeholder.com/100')">
                         <td>12</td>
