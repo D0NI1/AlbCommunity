@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albanian Community</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -19,7 +20,7 @@
         .container {
             text-align: center;
             background-color: rgba(85, 84, 84, 0.7);
-            padding: 30px;
+            padding: 30px 30px 60px; /* Extra padding at the bottom */
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
@@ -28,8 +29,8 @@
             margin: 20px 0;
         }
 
-        button {
-            background-color: #26bad4;
+        button, .icon {
+            background-color: #aaaaaa;
             color: rgb(0, 0, 0);
             border: none;
             border-radius: 5px;
@@ -37,11 +38,24 @@
             cursor: pointer;
             font-size: 16px;
             margin: 5px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
 
-        button:hover {
-            background-color: #0044ff;
+        button:hover, .icon:hover {
+            background-color: #fcf9f9;
+        }
+
+        .icon {
+            margin-top: 20px; /* Add spacing below the regular buttons */
+        }
+
+        .icon i {
+            font-size: 20px;
+            margin-right: 8px; /* Adds space between the icon and text */
         }
 
         /* Modal styles */
@@ -85,6 +99,11 @@
             <button onclick="Single()">Rank List</button>
             <button onclick="Double()">Tournament History</button>
         </div>
+
+        <!-- Discord Button -->
+        <a href="https://discord.gg/bN3XHBEU" class="icon" target="_blank">
+            <i class="fab fa-discord"></i> Join Discord
+        </a>
     </div>
 
     <!-- Modal -->
@@ -103,12 +122,12 @@
         }
 
         function Single(){
-       window.location.href = "RankList.html";
-    }
+            window.location.href = "RankList.html";
+        }
 
-    function Double(){
-       window.location.href = "tournament_history.html";
-    }
+        function Double(){
+            window.location.href = "tournament_history.html";
+        }
     </script>
 </body>
 </html>
