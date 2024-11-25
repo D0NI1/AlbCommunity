@@ -10,7 +10,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #1f2937, #374151);
+            background: linear-gradient(to right, #1e293b, #374151);
             color: white;
         }
 
@@ -19,7 +19,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: #2c7a7b;
+            background: #2d3748;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
@@ -27,14 +27,14 @@
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0;
-            color: #fbd38d;
+            color: #f6e05e;
         }
 
         .btn-back-home {
-            background-color: #fbd38d;
-            color: #1f2937;
+            background-color: #f6e05e;
+            color: #1e293b;
             padding: 10px 15px;
             font-size: 1rem;
             border: none;
@@ -44,13 +44,14 @@
         }
 
         .btn-back-home:hover {
-            background-color: #e6a910;
+            background-color: #d69e2e;
             transform: scale(1.1);
         }
 
         /* Main Container */
         .main-container {
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 900px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -58,19 +59,19 @@
 
         /* Tournament List */
         .tournament-list h2 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             text-align: center;
-            background: #2c7a7b;
-            color: #fbd38d;
+            background: #2d3748;
+            color: #f6e05e;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .tournament-list h2:hover {
-            background-color: #2a6f6d;
+            background-color: #2a4365;
             transform: scale(1.05);
         }
 
@@ -78,7 +79,7 @@
         .tournament-details {
             display: none;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -92,12 +93,15 @@
         }
 
         .tournament-details h3 {
-            margin: 0 0 10px 0;
-            color: #fbd38d;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #f6e05e;
         }
 
         .tournament-details p {
             margin: 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         /* Bracket Image */
@@ -111,12 +115,26 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .bracket-img-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #2d3748;
+            color: #f6e05e;
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
 
             .btn-back-home {
@@ -125,11 +143,15 @@
             }
 
             .main-container {
-                gap: 15px;
+                margin: 10px;
             }
 
             .tournament-details {
                 padding: 15px;
+            }
+
+            .bracket-img-container img {
+                max-width: 95%;
             }
         }
     </style>
@@ -148,14 +170,16 @@
             <h2 onclick="toggleTournamentDetails('tournament1')">November Tournament</h2>
             <div class="tournament-details" id="tournament1">
                 <h3>November Tournament</h3>
-                <p><strong>Winner:</strong> (Team Motra Domit)</p>
-                Roster:<br>
-                -Gezim
-                -Della
-                -Leon
+                <p><strong>Winner:</strong> Team Motra Domit</p>
+                <p><strong>Roster:</strong></p>
+                <ul>
+                    <li>Gezim</li>
+                    <li>Della</li>
+                    <li>Leon</li>
+                </ul>
                 <p><strong>Runner-Up:</strong> OwnAlbania</p>
                 <p><strong>MVP:</strong> Gezim</p>
-                <p><strong>Prize Pool:</strong>60$</p>
+                <p><strong>Prize Pool:</strong> $60</p>
                 <p><strong>Organized By:</strong> Gezim</p>
                 
                 <!-- Bracket Image Section -->
@@ -164,8 +188,8 @@
                 </div>
             </div>
         </div>
+    </div>
 
-      
     <footer>
         © 2024 AlbCommunity | All Rights Reserved
     </footer>
