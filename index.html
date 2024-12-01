@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albanian Community</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #0d1117; /* Dark blue/black */
+            color: #eaeaea;
+        }
+
+        /* Header Styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #161b22; /* Very dark blue */
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            color: #f1c40f; /* Yellow */
+        }
+
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            background: #1f2933; /* Slightly lighter dark blue */
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #f1c40f; /* Yellow on hover */
+            color: #161b22;
+        }
+
+        nav a i {
+            margin-right: 8px;
+        }
+
+        /* Main Section Styling */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+        }
+
+        main h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #f1c40f; /* Yellow */
+        }
+
+        main p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            color: #cbd5e1; /* Soft gray text */
+        }
+
+        main .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        main .cta-buttons button {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            background: #1f2933; /* Button dark blue */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        main .cta-buttons button:hover {
+            background: #f1c40f; /* Yellow on hover */
+            color: #161b22;
+        }
+
+        /* Footer Section */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #161b22;
+            color: white;
+            font-size: 14px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            nav a {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            main h2 {
+                font-size: 22px;
+            }
+
+            main p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Albanian Community</h1>
+        <nav>
+            <a href="https://discord.gg/bN3XHBEU" target="_blank">
+                <i class="fab fa-discord"></i> Join Discord
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <img src="https://cdn.discordapp.com/attachments/930890467686621280/1312832590717128755/file-2ACiqH8Jg3gW6CGgxkFLKj.png?ex=674dee20&is=674c9ca0&hm=9ac823bd56d039a4501267349707a009eca03a6071942b7cddc59afbf8d0f799&"
+        style="height:120px ; width: 240px;" alt="Community Image">
+        <h2>Welcome to the Albanian Community</h2>
+        <p>
+            Explore our rank list, tournament history, and join the vibrant community on Discord. 
+            Be part of exciting events and connect with other members!
+        </p>
+        <div class="cta-buttons">
+            <button onclick="Single()">📊View Rank List</button>
+            <button onclick="Double()">🏆Tournament History</button>
+            <button onclick="Triple()">🥇Hall Of Fame</button>
+        </div>
+    </main>
+
+    <footer>
+        © 2024 Albanian Community. All rights reserved.
+    </footer>
+
+    <script>
+        function Single() {
+            window.location.href = "RankList.html";
+        }
+
+        function Double() {
+            window.location.href = "tournament_history.html";
+        }
+
+        function Triple() {
+            window.location.href = "Fame.html";
+        }
+    </script>
+</body>
+</html>
