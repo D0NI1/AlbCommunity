@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power League Records</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #000000, yellow  ); /* Red and Black Gradient */
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(to bottom right, #000000,  yellow);
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            color: #000000; /* Bright red for header */
+        }
+
+        /* Container Styling for Cards */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        /* Card Style with Gradient Background */
+        .card {
+            background: linear-gradient(135deg, #2c3e50, #000000,  yellow); /* Dark blue, black, red gradient */
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 220px; /* Set fixed width for all cards */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #f1f1f1;
+        }
+
+        /* Back to Home Button */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(to bottom right, #000000, yellow); 
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background: linear-gradient(to bottom right, #000000,rgb(189, 189, 94) ); 
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #2c3e50, #000000,  yellow); /* Dark blue, black, red gradient */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            transform: scale(0);
+            animation: popupAnimation 0.5s forwards;
+        }
+
+        @keyframes popupAnimation {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .popup-content h2 {
+            font-size: 28px;
+            color: yellow; /* Bright red title */
+            margin-bottom: 20px;
+        }
+
+        .popup-content p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+      /* Popup Image Styling */
+.popup-content img {
+    width: 100%; /* Make image responsive */
+    max-width: 600px; /* Maximum width of the image */
+    height: auto; /* Adjust height according to aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: 5px solid yellow; /* Yellow border around the image */
+    cursor: pointer;
+}
+.popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color:  yellow;
+            font-size: 30px;
+            cursor: pointer;
+        }
+/* Additional Media Queries for Mobile Responsiveness */
+@media screen and (max-width: 600px) {
+    .popup-content img {
+        max-width: 90%; /* Adjust image width on mobile */
+    }
+
+    .container.scrollable {
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent wrapping */
+    }
+
+    .card {
+        display: inline-block; /* Ensure cards are in a horizontal row */
+        margin-right: 20px; /* Add space between cards */
+    }
+}
+
+/* Rest of your existing CSS remains unchanged */
+ .popup-content{
+                width: 90%;
+            }
+
+            .card h3 {
+                font-size: 20px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .popup-content button {
+                font-size: 16px;
+            }
+      
+
+      footer{
+        background: linear-gradient(to bottom right, #000000,  yellow);
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            color: #000000;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Home Button -->
+    <button class="back-to-home" onclick="window.location.href = 'Fame.html';">Back to Home</button>
+
+    <header>
+        Albanian Power League Records
+    </header>
+
+    <div class="container" id="cards-container">
+        <!-- Cards will be dynamically injected here -->
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h2 id="popup-title"></h2>
+            <p id="popup-description"></p>
+            <img id="popup-image" src="" alt="Popup Image">
+        </div>
+    </div>
+    
+
+    <script>
+        // Data - You can replace this with data fetched dynamically
+        const powerLeagueData = [
+            {
+                title: 'First Solo Masters in Albania - Power League',
+                imageUrl: 'https://media.discordapp.net/attachments/930890467686621280/1313247295713575013/7ed4e6f0-2831-4744-a0cd-52222abfc83e.jpg?ex=674f705a&is=674e1eda&hm=9e22e6debc4843f24a6defb8bf1e8adeec3bfd9dee48cf72ed60a814601850f7&=&format=webp&width=1200&height=554', 
+                 description: 'Gezim🦁 first Albanian player to reach Masters in Solo Power League.',
+                imageAlt: 'Player 1',
+                cardImage: 'https://www.shutterstock.com/image-vector/stars-brawl-power-league-highest-260nw-1945276012.jpg'  /* Updated Image Link */
+            },
+            {
+                title: 'First Team Masters in Albania - Power League',
+                imageUrl: 'https://media.discordapp.net/attachments/930890467686621280/1313235100715974737/IMG_0403.png?ex=674f64fe&is=674e137e&hm=066bf0240d5131f45947d86613d24b9129af7e8eae1e8da2d0bb2de5a96e6636&=&format=webp&quality=lossless&width=1183&height=559',
+                description: 'Maskoff🖤 first Albanian player to reach Masters in Team Power League.',
+                imageAlt: 'Player 2',
+                cardImage: 'https://www.shutterstock.com/image-vector/stars-brawl-power-league-highest-260nw-1945276012.jpg'
+            },
+            {
+                title: 'Second Solo Masters in Albania - Power League',
+                imageUrl: 'https://media.discordapp.net/attachments/930890467686621280/1313247294791090176/IMG_8007.png?ex=674f705a&is=674e1eda&hm=707c1a952346b4a64f11a9350c150589f677b98a33f8ae011cd5b0637480909a&=&format=webp&quality=lossless&width=1200&height=554',  
+                description: 'Etnor second Albanian player to reach Masters in Solo Power League.',
+                imageAlt: 'Player 3',
+                cardImage: 'https://www.shutterstock.com/image-vector/stars-brawl-power-league-highest-260nw-1945276012.jpg'
+            },
+            {
+                title: 'First Double Masters in Albania - Power League',
+                imageUrl: 'https://media.discordapp.net/attachments/930890467686621280/1313247295713575013/7ed4e6f0-2831-4744-a0cd-52222abfc83e.jpg?ex=674f705a&is=674e1eda&hm=9e22e6debc4843f24a6defb8bf1e8adeec3bfd9dee48cf72ed60a814601850f7&=&format=webp&width=1200&height=554',
+                description: 'Gezim🦁 first Albanian player to achieve Masters in Solo & Team Power League.',
+                imageAlt: 'Player 4',
+                cardImage:'https://www.shutterstock.com/image-vector/stars-brawl-power-league-highest-260nw-1945276012.jpg'
+            }
+        ];
+
+        // Populate the cards dynamically
+        const cardsContainer = document.getElementById('cards-container');
+        powerLeagueData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${item.cardImage}" alt="${item.imageAlt}">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+            `;
+            card.addEventListener('click', () => openPopup(item));
+            cardsContainer.appendChild(card);
+        });
+
+        // Popup logic
+        function openPopup(item) {
+            document.getElementById('popup-title').innerText = item.title;
+            document.getElementById('popup-description').innerText = item.description;
+            document.getElementById('popup-image').src = item.imageUrl;
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+// Popup logic
+function openPopup(item) {
+    document.getElementById('popup-title').innerText = item.title;
+    document.getElementById('popup-description').innerText = item.description;
+
+    // Ensure the image URL is set and visible
+    const popupImage = document.getElementById('popup-image');
+    popupImage.src = item.imageUrl ? item.imageUrl : ''; // Ensure the image URL is valid
+    popupImage.alt = item.imageAlt ? item.imageAlt : ''; // Add alt text for accessibility
+
+    document.getElementById('popup').style.display = 'flex';
+}
+
+
+    </script>
+<br><br><br>
+    <footer>
+        <p>©-Developed by Donii</p>
+    </footer>
+
+</body>
+</html>

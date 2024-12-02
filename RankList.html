@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albanian Brawl Stars RankList</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #0a2a56); /* Gradient from black to dark blue */
+            color: #ffffff; /* White text for contrast */
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.7); /* Transparent black for the header */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            color: #00bcd4; /* Cyan accent color */
+        }
+
+        .btn-tournament-history {
+            background-color: #00bcd4; /* Cyan button */
+            color: #ffffff;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-tournament-history:hover {
+            background-color: #0097a7; /* Darker cyan on hover */
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        .main-container {
+            margin: 20px auto;
+            max-width: 1000px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.6); /* Dark background with slight transparency */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Dark shadow */
+        }
+
+        /* Rank List */
+        .rank-list-container {
+            background: rgba(0, 0, 0, 0.7); /* Dark background */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .rank-list-container h2 {
+            font-size: 1.5rem;
+            color: #00bcd4; /* Cyan color */
+            margin-bottom: 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .rank-list {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1c2632; /* Darker background for the table */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            display: none;
+            max-height: 400px; /* Limit height */
+            overflow-y: auto; /* Allow scrolling */
+            table-layout: fixed;
+            transition: opacity 0.3s ease;
+        }
+
+        .rank-list th, .rank-list td {
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #ffffff; /* White text */
+            border-bottom: 2px solid #26303f; /* Subtle line under each cell */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .rank-list th {
+            background-color: #26303f; /* Dark blue for table header */
+        }
+
+        .rank-list tr:nth-child(even) {
+            background: #2c3e50; /* Slightly lighter dark blue for even rows */
+        }
+
+        .rank-list tr:hover {
+            background: #00bcd4; /* Cyan highlight on hover */
+            color: #1a1a1a; /* Darker text on hover */
+            transform: translateX(5px); /* Subtle slide effect */
+        }
+
+        .rank-list td {
+            font-size: 1.1rem;
+        }
+
+        /* Player Details */
+        .player-details-card {
+            background: #2c3e50; /* Dark blue background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            display: none;
+            text-align: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .player-details-card.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .player-details-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00bcd4;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .player-details-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .player-details-card h2 {
+            font-size: 1.3rem;
+            margin: 10px 0;
+            color: #00bcd4; /* Cyan color */
+        }
+
+        .player-details-card p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid #00bcd4;
+            border-radius: 10px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #00bcd4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            .btn-tournament-history {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .rank-list th, .rank-list td {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .player-details-card img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Brawl Stars RankList</h1>
+        <button class="btn-tournament-history" onclick="window.location.href='tournament_history.html'">
+            Tournament History
+        </button>
+    </header>
+
+    <div class="main-container">
+        <!-- Player Details -->
+        <div class="player-details-card" id="playerDetailsCard">
+            <img id="playerImage" src="" alt="Player Profile Image" onclick="showModal()">
+            <h2>Player Details</h2>
+            <p id="playerName">Name: N/A</p>
+            <p id="playerTime">Drafting: N/A</p>
+            <p id="playerScore">Skills: N/A</p>
+            <p id="playerAccuracy">Scrims WR: N/A</p>
+            <p id="playerAchievements">Best Achievement: N/A</p>
+        </div>
+
+        <!-- Rank List -->
+ <div class="rank-list-container">
+    <h2 onclick="toggleRankList()">November Rank List</h2>
+    <table class="rank-list" id="rankList">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>PL Rank</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr onclick="showPlayerDetails('Gezim', '80%', '95%', 'N/A', 'Tier C,Masters' ,'https://cdn.discordapp.com/attachments/1310359780518264832/1310718116665360454/7ed4e6f0-2831-4744-a0cd-52222abfc83e.jpg?ex=674d7d1e&is=674c2b9e&hm=99d2266fd5827024039e9e583690985d462c27d5e4c5dcbee136e79f3314f70a&')">
+                <td>🥇1</td>
+                <td>Gezim</td>
+                <td>Masters x2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Domii', '75%', '85%', 'N/A', 'Matcherino QF','https://cdn.discordapp.com/attachments/1310359780518264832/1310361787430080572/IMG_6524.png?ex=674d82c3&is=674c3143&hm=446d458944fc538a85eb898e97fd8dca6261b08dfc19648cfa8c63027d68101a&')">
+                <td>🥈2</td>
+                <td>Domii</td>
+                <td>Legendary 3</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Dave', '50%', '75%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310360816138191038/Screenshot_2024-11-24-22-44-38-265_com.supercell.brawlstars.jpg?ex=674d81db&is=674c305b&hm=1b7adfb1e524644b1b3c60bda1de657234ed5adcba7fba161e4679c27faed7d0&')">
+                <td>🥉3</td>
+                <td>Dave</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Della', '50%', '70%', 'N/A','Tournament winner x3', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310368760078663760/IMG_1377.png?ex=674d8941&is=674c37c1&hm=401cbcf46b1b8c48ec46dcce6198c927ec361bd7f3dd097fc2c9f1efe3f6e487&')">
+                <td>4</td>
+                <td>Della</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Alpha', '65%', '75%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310360815114915951/Screenshot_20241124_224452_Brawl_Stars.jpg?ex=674d81db&is=674c305b&hm=cffd97aa67a08e3b933caeaf90b0ac5837184b93c5c3e4fa8ba9ec6eeff8e884&')">
+                <td>5</td>
+                <td>Alpha</td>
+                <td>Legendary 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Nuzi', '50%', '75%', 'N/A','N/A', '')">
+                <td>6</td>
+                <td>Nuzi</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Deon', '50%', '73%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310361129339326535/IMG_1968.png?ex=674d8226&is=674c30a6&hm=57a0f5becae0150c3d1612bb9f527fb66e2fb76835fa8d7bb3ee4b281bae4bb2&')">
+                <td>7</td>
+                <td>Deon</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Kaddro', '70%', '75%', 'N/A','N/A', '')">
+                <td>8</td>
+                <td>Kaddro</td>
+                <td>Legendary 2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Donii', '55%', '69%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1212465996476977183/1310354032984064102/IMG_0259.png?ex=674d7b8a&is=674c2a0a&hm=6c9dbeee5f70df6ce0654816213f07357582b96887435f352472cdf6efb4d10d&')">
+                <td>9</td>
+                <td>Donii</td>
+                <td>Mythic 2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Joker', '50%', '65%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310361588049645640/IMG_8366.png?ex=674d8293&is=674c3113&hm=c57ebf73097de9eaca9245e5d99615994a12cad944b7e0ba66e9958a34bd3519&')">
+                <td>10</td>
+                <td>Joker</td>
+                <td>Gold 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Ken', '50%', '70%%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1312867168878329909/IMG_3500.png?ex=674e0e54&is=674cbcd4&hm=4953a49fca91dae99438f830243eb4ca16d3f4121f1bb1580f35c371906dbe67&')">
+                <td>11</td>
+                <td>Ken</td>
+                <td>Mythic 2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Leon', '50%', '68%%', 'N/A','Tournament Winner', '')">
+                <td>12</td>
+                <td>Leon</td>
+                <td>Mythic 2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Masakra', '50%', '72%', 'N/A','N/A', '')">
+                <td>13</td>
+                <td>Masakra</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('AridozZ', '50%', '65%', 'N/A','N/A', '')">
+                <td>14</td>
+                <td>AridonzZ</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('DaddyAlbanie', '50%', '70%', 'N/A','N/A', '')">
+                <td>15</td>
+                <td>DaddyAlbanie</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Rroni.', '50%', '66%', 'N/A','N/A', '')">
+                <td>16</td>
+                <td>Rroni</td>
+                <td>Mythic 2</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Albi', '50%', '65%%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310377056147738644/IMG_1372.png?ex=674d90fb&is=674c3f7b&hm=34ede36e37b1c383444b7217e4e26345a693364c96fce159e69b33bf7f5eecee&')">
+                <td>17</td>
+                <td>Albi</td>
+                <td>Mythic 1</td>
+            </tr>
+            <tr onclick="showPlayerDetails('Olti', '50%', '60%', 'N/A','N/A', 'https://cdn.discordapp.com/attachments/1310359780518264832/1310360787734495242/image0.jpg?ex=674d81d5&is=674c3055&hm=56b1849a0bb71de7a471312de7596d3ad13ae1a560aba25619652ce29aae8ac9&')">
+                <td>18</td>
+                <td>Olti</td>
+                <td>Diamond 1</td>
+            </tr>
+        </tbody>
+        
+    </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="modalImage" src="" alt="Player Full Image">
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Albanian Brawl Stars Community. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let rankListVisible = false;
+
+        function toggleRankList() {
+            const rankList = document.getElementById("rankList");
+            rankList.style.display = rankListVisible ? 'none' : 'block';
+            rankListVisible = !rankListVisible;
+
+            // Hide player details when rank list is closed
+            if (!rankListVisible) {
+                document.getElementById("playerDetailsCard").style.display = 'none';
+            }
+        }
+
+        function showPlayerDetails(name, time, score, accuracy, achievements, imgSrc) {
+            document.getElementById("playerName").textContent = "Name: " + name;
+            document.getElementById("playerTime").textContent = "Drafting: " + time;
+            document.getElementById("playerScore").textContent = "Skills: " + score;
+            document.getElementById("playerAccuracy").textContent = "Scrims WR: " + accuracy;
+            document.getElementById("playerAchievements").textContent = "Best Achievement: " + achievements;
+            document.getElementById("playerImage").src = imgSrc;
+            document.getElementById("playerDetailsCard").style.display = 'block';
+        }
+
+        function showModal() {
+            const modal = document.getElementById("modal");
+            const modalImage = document.getElementById("modalImage");
+            modalImage.src = document.getElementById("playerImage").src;
+            modal.classList.add("active");
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.classList.remove("active");
+        }
+    </script>
+</body>
+</html>

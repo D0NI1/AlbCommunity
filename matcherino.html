@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .maintenance-box {
+            background-color: #fff;
+            border: 2px solid #e74c3c;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .maintenance-box h2 {
+            color: #e74c3c;
+        }
+        .maintenance-box p {
+            color: #555;
+        }
+        .ok-button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .ok-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="maintenance-box">
+    <h2>Under Maintenance</h2>
+    <p>This page is currently under maintenance. We apologize for the inconvenience.</p>
+    <button class="ok-button" onclick="redirectToIndex()">OK</button>
+</div>
+
+<script>
+    function redirectToIndex() {
+        window.location.href = "index.html"; // Redirect to the homepage
+    }
+</script>
+
+</body>
+</html>

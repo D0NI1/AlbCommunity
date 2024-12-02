@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Fame</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #0a1f3d, #000000, #00bcd4);
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #00bcd4;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: cyan;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background-color: cyan;
+            color: black;
+        }
+
+        .hall-of-fame {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .player-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00bcd4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .player-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20%;
+            margin-bottom: 15px;
+        }
+
+        .player-card h3 {
+            font-size: 22px;
+            color: #00bcd4;
+            margin-bottom: 10px;
+        }
+
+        .player-card p {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .player-card .achievement {
+            font-weight: bold;
+            color: #00bcd4;
+        }
+
+        .popup, .yt-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content, .yt-popup-content {
+            background: linear-gradient(to bottom right, #0a1f3d, #000000, #00bcd4);
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .popup-content h2, .yt-popup-content h2 {
+            font-size: 24px;
+            color: #00bcd4;
+            margin-bottom: 10px;
+        }
+
+        .popup-content p, .yt-popup-content p {
+            font-size: 16px;
+            color: cyan;
+            margin: 15px 0;
+        }
+
+        .popup-content img, .yt-popup-content img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .popup-content .close-btn, .yt-popup-content .close-btn {
+            background-color: #00bcd4;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .popup-content .close-btn:hover, .yt-popup-content .close-btn:hover {
+            background-color: #0097a7;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #00bcd4;
+            cursor: pointer;
+        }
+
+        .popup-close:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Back to Home Button -->
+<button class="back-to-home" onclick="window.location.href='index.html';">Back to Home</button>
+
+<div class="container">
+    <div class="header">Hall of Fame</div>
+    <div class="hall-of-fame">
+        <!-- Player 1 Card -->
+        <div class="player-card" onclick="openPopup('Ladder Records', 'https://w1.pngwing.com/pngs/793/246/png-transparent-brawl-stars-game-android-supercell-blog-yellow-orange-line-thumbnail.png', 'Best ladder warriors throughout the years.', 'ladder.html')">
+            <img src="https://w1.pngwing.com/pngs/793/246/png-transparent-brawl-stars-game-android-supercell-blog-yellow-orange-line-thumbnail.png" alt="Ladder Records">
+            <h3>Ladder Records</h3>
+            <p><span class="achievement">Ladder records & achievements throughout the years!</span></p>
+        </div>
+
+        <!-- Player 2 Card -->
+        <div class="player-card" onclick="openPopup('Matcherino Performances', 'https://i.imgur.com/pj0D6f8.png', 'Impressive matcherino performances from albanian players in matcherino', 'matcherino.html')">
+            <img src="https://i.imgur.com/pj0D6f8.png" alt="Matcherino Performances">
+            <h3>Matcherino Performances</h3>
+            <p><span class="achievement">Matcherino performances & achievements throughout the years!</span></p>
+        </div>
+
+        <!-- Player 3 Card -->
+        <div class="player-card" onclick="openPopup('Power League', 'https://dotesports.com/wp-content/uploads/2021/03/09111203/powerleaguebrawlstars.jpg', 'Albanian Players Records in PowerLeague', 'powerleague.html')">
+            <img src="https://dotesports.com/wp-content/uploads/2021/03/09111203/powerleaguebrawlstars.jpg" alt="Power League">
+            <h3>Power League Records</h3>
+            <p><span class="achievement">Power League records & achievements throughout the years!</span></p>
+        </div>
+
+        <!-- Player 4 Card -->
+        <div class="player-card" onclick="openPopup('OP Players', 'https://images7.alphacoders.com/127/thumb-1920-1279154.jpg', 'OP Albanian Players', 'OPplayers.html')">
+            <img src="https://images7.alphacoders.com/127/thumb-1920-1279154.jpg" alt="OP Players">
+            <h3>OP Players</h3>
+            <p><span class="achievement">Best Albanian players throughout the years!</span></p>
+        </div>
+
+        <!-- YouTube Channel Card -->
+        <div class="player-card" onclick="openYTPopup()">
+            <img src="https://media.discordapp.net/attachments/930890467686621280/1312910541328748634/IMG_0393.jpg?ex=674edf79&is=674d8df9&hm=ea1895d2d94f00b2932a1e879f06f6ed0583d24e4d2eb50de19219c5cb18ee44&=&format=webp" alt="Subscribe to Channel">
+            <h3>Domii getting 50k subs!</h3>
+            <p><span class="achievement">The first albanian official Content Creator!</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- General Popup -->
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <button class="popup-close" onclick="closePopup()">×</button>
+        <h2 id="popup-name"></h2>
+        <img id="popup-image" src="" alt="Player Image">
+        <p id="popup-achievement"></p>
+        <button class="close-btn" onclick="goToPage()">Check it Out!</button>
+    </div>
+</div>
+
+<!-- Special YouTube Popup -->
+<div class="yt-popup" id="yt-popup">
+    <div class="yt-popup-content">
+        <button class="popup-close" onclick="closePopup()">×</button>
+        <h2>Subscribe to Domii's YT Channel</h2>
+        <img src="https://media.discordapp.net/attachments/930890467686621280/1312910541328748634/IMG_0393.jpg?ex=674edf79&is=674d8df9&hm=ea1895d2d94f00b2932a1e879f06f6ed0583d24e4d2eb50de19219c5cb18ee44&=&format=webp" alt="YouTube Channel">
+        <p>Check out the latest Brawl Stars content and support our creator!</p>
+        <button class="close-btn" onclick="window.open('https://www.youtube.com/@Domii-BrawlStars', '_blank');">Subscribe Now!</button>
+    </div>
+</div>
+
+<script>
+    let targetPage = "";
+
+    function openPopup(name, image, achievement, page) {
+        document.getElementById('popup-name').innerText = name;
+        document.getElementById('popup-image').src = image;
+        document.getElementById('popup-achievement').innerText = achievement;
+        targetPage = page;
+        document.getElementById('popup').style.display = 'flex';
+    }
+
+    function goToPage() {
+        window.open(targetPage, '_blank');
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('yt-popup').style.display = 'none';
+    }
+
+    function openYTPopup() {
+        document.getElementById('yt-popup').style.display = 'flex';
+    }
+</script>
+
+</body>
+</html>
