@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladder Records</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #000000, #ff0000); /* Red and Black Gradient */
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(to bottom right, #000000, #ff0000);
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            color: #000000; /* Bright red for header */
+        }
+
+        /* Container Styling for Cards */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        /* Card Style with Gradient Background */
+        .card {
+            background: linear-gradient(135deg, #2c3e50, #000000, #ff0000); /* Dark blue, black, red gradient */
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 220px; /* Set fixed width for all cards */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .card img {
+            width: 180px;
+            height: 180px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+            color: #f1f1f1;
+        }
+
+        /* Back to Home Button */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(to bottom right, #000000, #ff0000); 
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background: linear-gradient(to bottom right, #000000, #ff7b7b); 
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #2c3e50, #000000, #ff0000); /* Dark blue, black, red gradient */
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+            transform: scale(0);
+            animation: popupAnimation 0.5s forwards;
+        }
+
+        @keyframes popupAnimation {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        .popup-content h2 {
+            font-size: 28px;
+            color: #ff5733; /* Bright red title */
+            margin-bottom: 20px;
+        }
+
+        .popup-content p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .popup-content img {
+            width: 400px;
+            height: 400px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 5px solid red; /* Red border around image */
+            cursor: pointer;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ff5733;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 600px) {
+            .popup-content {
+                width: 90%;
+            }
+
+            .card h3 {
+                font-size: 20px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .popup-content button {
+                font-size: 16px;
+            }
+
+      }
+
+      footer{
+        background: linear-gradient(to bottom right, #000000, #ff0000);
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            color: #000000;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Back to Home Button -->
+    <button class="back-to-home" onclick="window.location.href = 'Fame.html';">Back to Home</button>
+
+    <header>
+        Albanian Ladder Records
+    </header>
+
+    <div class="container" id="cards-container">
+        <!-- Cards will be dynamically injected here -->
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h2 id="popup-title"></h2>
+            <p id="popup-description"></p>
+            <img id="popup-image" src="" alt="Popup Image">
+        </div>
+    </div>
+
+    <script>
+        // Data - You can replace this with data fetched dynamically
+        const playersData = [
+            {
+                title: 'First 50k in Albania',
+                imageUrl: 'https://i.imgur.com/o3N7qQP.jpg',
+                description: 'Maskoff🖤 first albanian player to get 50k trophies.',
+                imageAlt: 'Player 1',
+                cardImage: 'https://i.redd.it/finally-reached-50k-trophies-heres-my-reward-v0-jlhx4orqfz4c1.jpg?width=1792&format=pjpg&auto=webp&s=f04042aab8f11d50319c4224b37f36030dda94ba'
+            },
+            {
+                title: 'First 60k in Albania',
+                imageUrl: 'No image from K4rma',
+                description: 'K4rma first albanian player to get 60k trophies.',
+                imageAlt: 'Player 2',
+                cardImage: 'https://i.ytimg.com/vi/7UdaWHMJzK0/maxresdefault.jpg'
+            },
+            {
+                title: 'First 70k in Albania',
+                imageUrl: 'https://i.imgur.com/XO2UVPT.jpg',
+                description: '💖DaddyAlbanie first albanian player to get 70k trophies.',
+                imageAlt: 'Player 3',
+                cardImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpQH7gMfswjpqOH2FrBcoqzAd3P2ejaX3cg&s'
+            },
+            {
+                title: 'First 80k in Albania',
+                imageUrl: '',   
+                description: 'Regi first albanian player to get 90k trophies.',
+                imageAlt: 'Player 4',
+                cardImage: 'https://preview.redd.it/reached-80k-trophies-v0-duy13dzgedzd1.png?width=1278&format=png&auto=webp&s=6b1c812e0f5a16d81b5c85d9dde5319368e09f7d',   },
+               
+            {
+                title: 'First 90k in Albania',
+                imageUrl: 'https://i.imgur.com/OD3bK0n.jpg',
+                description: 'Deon first albanian player to get 90k trophies.',
+                imageAlt: 'Player 5',
+                cardImage:'https://media.discordapp.net/attachments/1212465996476977183/1313250271324803182/IMG_2040.png?ex=674f731f&is=674e219f&hm=97bf5cd22d4f17f6bd391f5959f772dfcefde59c243c8ff64c69cd506c90028f&=&format=webp&quality=lossless&width=1200&height=554'
+             },
+         ];
+
+        // Function to render the cards
+        function renderCards() {
+            const container = document.getElementById('cards-container');
+            playersData.forEach(player => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => openPopup(player.title, player.imageUrl, player.description);
+                card.innerHTML = `
+                    <img src="${player.cardImage}" alt="${player.imageAlt}">
+                    <h3>${player.title}</h3>
+                    <p>Click to see more details!</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Function to open the popup
+        function openPopup(title, imageUrl, description) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-image').src = imageUrl;
+            document.getElementById('popup-description').innerText = description;
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Call render function to display cards on page load
+        renderCards();
+    </script>
+</body>
+
+<br><br><br><br><br><br><br>
+
+<footer>
+   <p> ©-Developed by Donii</p>
+</footer>
+
+</html>

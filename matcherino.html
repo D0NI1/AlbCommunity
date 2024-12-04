@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matcherino Tournament Results</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #121826;
+            color: #e4e4e7;
+        }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        header .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #1e293b;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        header .back-btn:hover {
+            background: #0f172a;
+            transform: scale(1.05);
+        }
+
+        /* Main Container */
+        .results-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .results-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #0ea5e9;
+        }
+
+        /* Performance Cards */
+        .performance-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .performance-card {
+            background: #1e293b;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .performance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .performance-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .performance-card .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .performance-card .card-title {
+            font-size: 1.5rem;
+            color: #0ea5e9;
+            margin-bottom: 10px;
+        }
+
+        .performance-card .card-info {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 15px;
+        }
+
+        .performance-card .card-info span {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .performance-card .team-roster {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+        .performance-card .team-roster strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .performance-card .view-bracket {
+            display: block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #0ea5e9;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            text-align: center;
+        }
+
+        .performance-card .view-bracket:hover {
+            background: #0284c7;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    Matcherino Performances
+    <a href="Fame.html" class="back-btn">Back to Home</a>
+</header>
+
+<div class="results-container">
+    <h2 class="results-title">Top Performances</h2>
+    <div class="performance-cards">
+        <!-- Example Card -->
+        <div class="performance-card">
+            <img src="https://i.imgur.com/ZBLrYKd.png" alt="Bracket Image" class="card-bracket-img">
+            <div class="card-content">
+                <h3 class="card-title">Pidh4None</h3>
+                <div class="card-info">
+                    <span><strong>Position:</strong> Round 3</span>
+                    <span><strong>Prize:</strong> $687</span>
+                    <span><strong>Tournament:</strong> Haneki Tournament</span>
+                </div>
+                <div class="team-roster">
+                    <strong>Team Roster:</strong>
+                    <ul>
+                        <li>Gezim ©</li>
+                        <li>Domii</li>
+                        <li>Dave</li>
+                    </ul>
+                </div>
+                <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/ZBLrYKd.png">View Bracket</a>
+            </div>
+        </div>
+
+        <div class="performance-card">
+            <img src="https://i.imgur.com/ypJlusu.jpg" alt="Bracket Image" class="card-bracket-img">
+            <div class="card-content">
+                <h3 class="card-title">Strategat</h3>
+                <div class="card-info">
+                    <span><strong>Position:</strong> Round 3</span>
+                    <span><strong>Prize:</strong> $1.1k</span>
+                    <span><strong>Tournament:</strong> Time To Win #14</span>
+                </div>
+                <div class="team-roster">
+                    <strong>Team Roster:</strong>
+                    <ul>
+                        <li>Donii ©</li>
+                        <li>Deon</li>
+                        <li>Dave</li>
+                    </ul>
+                </div>
+                <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/ypJlusu.jpg">View Bracket</a>
+            </div>
+        </div>
+            <div class="performance-card">
+                <img src="https://i.imgur.com/ryFkDoD.jpg" alt="Bracket Image" class="card-bracket-img">
+                <div class="card-content">
+                    <h3 class="card-title">Vitality</h3>
+                    <div class="card-info">
+                        <span><strong>Position:</strong> Round 3</span>
+                        <span><strong>Prize:</strong> $372</span>
+                        <span><strong>Tournament:</strong> Orion Tournament #30</span>
+                    </div>
+                    <div class="team-roster">
+                        <strong>Team Roster:</strong>
+                        <ul>
+                            <li>Della ©</li>
+                            <li>Donii</li>
+                            <li>Dave</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/ryFkDoD.jpg">View Bracket</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+<header>Albanian players performances with their rosters</header>
+<div class="results-container">
+    <h2 class="results-title">Top Performances</h2>
+    <div class="performance-cards">
+
+<div class="performance-card">
+    <img src="https://i.imgur.com/KO68Xw3.png" alt="Bracket Image" class="card-bracket-img">
+    <div class="card-content">
+        <h3 class="card-title">F/A Barbat</h3>
+        <div class="card-info">
+            <span><strong>Position:</strong> Quarter Finals</span>
+            <span><strong>Prize:</strong> $1.2k</span>
+            <span><strong>Tournament:</strong> Skepsis Season/ Point Tournament/ 3</span>
+        </div>
+        <div class="team-roster">
+            <strong>Team Roster:</strong>
+            <ul>
+                <li>Gezim ©</li>
+                <li>Fraxx</li>
+                <li>Twiky</li>
+            </ul>
+        </div>
+        <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/KO68Xw3.png">View Liqueipidia</a>
+    </div>
+</div>
+
+<div class="performance-card">
+    <img src="https://i.imgur.com/KO68Xw3.png" alt="Bracket Image" class="card-bracket-img">
+    <div class="card-content">
+        <h3 class="card-title">F/A Barbat</h3>
+        <div class="card-info">
+            <span><strong>Position:</strong> Quarter Finals</span>
+            <span><strong>Prize:</strong> $800</span>
+            <span><strong>Tournament:</strong> Skepsis Season/ Point Tournament/ 4</span>
+        </div>
+        <div class="team-roster">
+            <strong>Team Roster:</strong>
+            <ul>
+                <li>Gezim ©</li>
+                <li>Gavo</li>
+                <li>Twiky</li>
+            </ul>
+        </div>
+        <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/KO68Xw3.png">View Liqueipidia</a>
+    </div>
+</div>
+
+<div class="performance-card">
+    <img src="https://i.imgur.com/UlxdepQ.png" alt="Bracket Image" class="card-bracket-img">
+    <div class="card-content">
+        <h3 class="card-title">Eu</h3>
+        <div class="card-info">
+            <span><strong>Position:</strong> Quarter Finals</span>
+            <span><strong>Prize:</strong> $1.5k</span>
+            <span><strong>Tournament:</strong> Brawl Hub Invitational</span>
+        </div>
+        <div class="team-roster">
+            <strong>Team Roster:</strong>
+            <ul>
+                <li>Domii ©</li>
+                <li>Woj</li>
+                <li>Rockster</li>
+            </ul>
+        </div>
+        <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/UlxdepQ.png">View Liqueipidia</a>
+    </div>
+</div>
+
+<div class="performance-card">
+    <img src="https://i.imgur.com/UlxdepQ.png" alt="Bracket Image" class="card-bracket-img">
+    <div class="card-content">
+        <h3 class="card-title">Eu</h3>
+        <div class="card-info">
+            <span><strong>Position:</strong> Quarter Finals</span>
+            <span><strong>Prize:</strong> $650k</span>
+            <span><strong>Tournament:</strong> Ultimate Brawl Tournamentl</span>
+        </div>
+        <div class="team-roster">
+            <strong>Team Roster:</strong>
+            <ul>
+                <li>Domii ©</li>
+                <li>Kodez</li>
+                <li>John</li>
+            </ul>
+        </div>
+        <a href="#" class="view-bracket" data-bracket="https://i.imgur.com/UlxdepQ.png">View Liqueipidia</a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 Developed by Donii
+</footer>
+
+<!-- Modal -->
+<div class="modal" id="imageModal">
+    <span class="modal-close">&times;</span>
+    <img src="" alt="Expanded Bracket">
+</div>
+
+<script>
+    // Modal Functionality for Images
+    const modal = document.getElementById('imageModal');
+    const modalImage = modal.querySelector('img');
+    const closeModal = modal.querySelector('.modal-close');
+
+    // Add event listener to "View Bracket" buttons
+    document.querySelectorAll('.view-bracket').forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            const bracketImage = button.getAttribute('data-bracket'); // Get the image URL from the data attribute
+            modalImage.src = bracketImage; // Set modal image source
+            modal.style.display = 'flex'; // Display the modal
+        });
+    });
+
+    // Close the modal when clicking on close icon
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Close the modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
