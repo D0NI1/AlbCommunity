@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Albanian Brawl Stars Players</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000e1d, #000000, #aa9c21); /* Dark Blue, Black, Green */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #00bcd4; /* Cyan accent color */
+            margin: 0;
+        }
+
+        /* Back to Home Button */
+        .back-btn {
+            background-color: #00bcd4;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #0097a7;
+        }
+
+        /* Main Content */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            justify-content: center;
+        }
+
+        .player-card {
+            background: rgba(0, 0, 0, 0.8); /* Dark background */
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+        }
+
+        .player-card img {
+            width: 100%;
+            height: auto;
+            max-height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 3px solid transparent;
+            transition: transform 0.3s ease, border 0.3s ease;
+        }
+
+        .player-card img:hover {
+            transform: scale(1.05);
+            border: 3px solid #00bcd4; /* Green border on hover */
+        }
+
+        .player-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Modal (Hidden by Default) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9); /* Black with opacity */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .modal-content img {
+            width: 100%;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #00bcd4;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+
+            .back-btn {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+                align-self: flex-end;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .player-card img {
+                max-height: 150px;
+            }
+        }
+
+        /* Tablet to Mobile Adjustments */
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .back-btn {
+                font-size: 0.85rem;
+                padding: 8px 14px;
+            }
+
+            .gallery-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .player-card img {
+                max-height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Top Albanian Brawl Stars Players</h1>
+        <a href="Fame.html" class="back-btn">Back to Home</a>
+    </header>
+
+    <div class="gallery-container">
+        <!-- Player Cards with Images -->
+        <div class="player-card">
+            <img src="https://i.imgur.com/8uto1zv.png" alt="Player 1" class="player-img">
+            <h3><strong>Albania Boy</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/CstGOQj.png" alt="Player 2" class="player-img">
+            <h3><strong>Alpha</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/LuE571Q.png" alt="Player 3" class="player-img">
+            <h3><strong>Ari</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/GjQRXcv.png" alt="Player 4" class="player-img">
+            <h3><strong>Besar</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/IctIU9q.png" alt="Player 5" class="player-img">
+            <h3><strong>♥DaddyAlbanie</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/Buj4KyU.png" alt="Player 6" class="player-img">
+            <h3><strong>Elisi</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/Gik6Rqo.png" alt="Player 7" class="player-img">
+            <h3><strong>E4sty</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/hrltV1k.png" alt="Player 8" class="player-img">
+            <h3><strong>Donii</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/9wnuAfc.png" alt="Player 9" class="player-img">
+            <h3><strong>Domii</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/bPkOTLN.png" alt="Player 10" class="player-img">
+            <h3><strong>Della</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/Im6ODXC.png" alt="Player 11" class="player-img">
+            <h3><strong>Learti</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/1FtMpJs.png" alt="Player 12" class="player-img">
+            <h3><strong>Kaddro</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/J5jBage.jpg" alt="Player 13" class="player-img">
+            <h3><strong>Gezim</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/5X4zLFu.png" alt="Player 14" class="player-img">
+            <h3><strong>Etnor</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/e71iE2S.png" alt="Player 15" class="player-img">
+            <h3><strong>Enoo</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/dP0qMiK.png" alt="Player 16" class="player-img">
+            <h3><strong>Maskoff🖤</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/D9dqfuY.png" alt="Player 17" class="player-img">
+            <h3><strong>🌺|Senpa1</strong></h3>
+        </div>
+
+        <div class="player-card">
+            <img src="https://i.imgur.com/02JSsVC.png" alt="Player 18" class="player-img">
+            <h3><strong>Rroni</strong></h3>
+        </div>
+    </div>
+
+    <!-- Modal for Image View -->
+    <div id="imageModal" class="modal">
+        <br><br><br><br><br><br><br><br>
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    <br><br><br><br>
+    <footer>
+        <p>©-Developed by Donii</p>
+    </footer>
+
+    <script>
+        // Get all images
+        const images = document.querySelectorAll('.player-img');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close');
+
+        // Loop through images and add click event
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                modal.style.display = "block";
+                modalImage.src = image.src;
+            });
+        });
+
+        // Close the modal when the 'X' is clicked
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+
+        // Close the modal if the user clicks outside of the image
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
